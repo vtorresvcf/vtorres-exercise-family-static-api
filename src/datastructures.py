@@ -8,9 +8,11 @@ update this file to implement the following already declared methods:
 """
 from random import randint
 
+
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
+        self.name = ""
         self._next_id = 1
         self._members = []
 
@@ -23,17 +25,28 @@ class FamilyStructure:
     def add_member(self, member):
         ## Debes implementar este método
         ## Agrega un nuevo miembro a la lista de _members
-        pass
+        member["id"] = self._generate_id()
+        member["last_name"] = self.last_name
+        self._members.append(member)
+        return self.get_all_members()
+        
 
     def delete_member(self, id):
         ## Debes implementar este método
         ## Recorre la lista y elimina el miembro con el id proporcionado
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                self._members.remove(member)
+                return member
+
+    
 
     def get_member(self, id):
         ## Debes implementar este método
         ## Recorre la lista y obtén el miembro con el id proporcionado
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                return member
 
-    def get_all_members(self, id):
+    def get_all_members(self):
         return self._members
